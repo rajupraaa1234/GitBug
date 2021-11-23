@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:id="@+id/ItemLin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle"
+        android:layout_marginLeft="@dimen/dp12"
+        android:layout_marginRight="@dimen/dp12"
+        android:layout_marginTop="@dimen/dp8"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/dp10"
+        android:paddingBottom="@dimen/dp10"
+        android:paddingLeft="@dimen/dp10"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <com.github.siyamed.shapeimageview.CircularImageView
+                android:id="@+id/cartimage"
+                android:layout_width="@dimen/dp90"
+                android:layout_height="@dimen/dp90"
+                android:src="@drawable/ic_user"
+                app:siBorderColor="@color/transparent"
+                app:siBorderWidth="0dp"
+                app:siRadius="@dimen/dp50" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp5"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:id="@+id/duration"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textAlignment="center"
+                    android:text="Raju kumar"
+                    android:layout_gravity="bottom"
+                    android:textSize="@dimen/dp12"
+                    />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/Idate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/medium_text"
+                android:textSize="@dimen/dp12"
+                android:text="12/06/97"
+                android:maxLines="1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/dp5"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/calltype"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:textSize="14dp"
+                android:textColor="#000000"
+                android:maxLength="200"
+                android:text="Hay i got this error from line number 56 can you please help me out . I have tried lotts of my effort but i am not able to got the idea to resolved this... "    android:layout_marginRight="@dimen/dp12"
+                android:layout_marginLeft="@dimen/dp12"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
