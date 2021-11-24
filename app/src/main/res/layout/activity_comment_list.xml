@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UI.HomeScreen.Home.CommentListActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/dp12"
+            android:layout_marginRight="@dimen/dp12"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/ItemLin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/commentdetailcard"
+                android:layout_marginTop="@dimen/dp8"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/dp10"
+                android:paddingBottom="@dimen/dp10"
+                android:paddingLeft="@dimen/dp10"
+                android:paddingRight="@dimen/dp10"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/issueTitle"
+                        android:layout_weight="0.8"
+                        android:textColor="@color/col_15045"
+                        android:fontFamily="sans-serif-black"
+
+                        android:text="issue title "
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/issueId"
+                        android:layout_width="wrap_content"
+                        android:layout_weight="0.3"
+                        android:gravity="end"
+                        android:textColor="@color/medium_text"
+                        android:text="hjfbdsjfdfdf"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textSize="@dimen/sp14"
+                        android:id="@+id/bodytxt"
+                        android:text="zxfhbcsdbyfvjyfvdfbsdfhbsyhfshfsfhsdfhbshfbs"
+                        android:textColor="@color/col_666666"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="10 comment"
+                        android:fontFamily="sans-serif-black"
+                        android:textColor="@color/col_666666"
+                        android:id="@+id/numComment"
+                        android:layout_marginTop="@dimen/dp10"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Comments"
+                android:textColor="@color/col_666666"
+                android:fontFamily="sans-serif-black"
+                android:layout_marginTop="@dimen/dp8"
+                android:layout_height="wrap_content"/>
+
+            <RelativeLayout
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/commentRec"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+                <TextView
+                    android:id="@+id/noCommenttxt"
+                    android:layout_width="wrap_content"
+                    android:visibility="gone"
+                    android:text="No Comments..."
+                    android:layout_centerInParent="true"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+</LinearLayout>

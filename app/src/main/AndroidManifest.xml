@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GitBug">
         <activity
+            android:name=".UI.HomeScreen.Home.CommentListActivity"
+            android:exported="true" />
+        <activity
             android:name=".UI.HomeScreen.Home.HomeActivity"
             android:exported="true" />
         <activity

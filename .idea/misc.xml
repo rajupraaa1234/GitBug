@@ -4,9 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/raju.kumar/AndroidStudioProjects/GitBug/app/src/main/res/drawable-v24/rectangle.xml" value="0.20208333333333334" />
+        <entry key="..\:/Users/raju.kumar/AndroidStudioProjects/GitBug/app/src/main/res/drawable/commentdetailcard.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/raju.kumar/AndroidStudioProjects/GitBug/app/src/main/res/layout/activity_comment_list.xml" value="0.25" />
         <entry key="..\:/Users/raju.kumar/AndroidStudioProjects/GitBug/app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="..\:/Users/raju.kumar/AndroidStudioProjects/GitBug/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/Users/raju.kumar/AndroidStudioProjects/GitBug/app/src/main/res/layout/bugitem.xml" value="0.25" />
+        <entry key="..\:/Users/raju.kumar/AndroidStudioProjects/GitBug/app/src/main/res/layout/bugitem.xml" value="0.33" />
       </map>
     </option>
   </component>

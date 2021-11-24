@@ -26,7 +26,7 @@
             android:orientation="vertical">
 
             <com.github.siyamed.shapeimageview.CircularImageView
-                android:id="@+id/cartimage"
+                android:id="@+id/Uimage"
                 android:layout_width="@dimen/dp90"
                 android:layout_height="@dimen/dp90"
                 android:src="@drawable/ic_user"
@@ -43,25 +43,24 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:id="@+id/duration"
+                    android:id="@+id/username"
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
                     android:gravity="center"
                     android:maxLines="1"
+                    android:layout_marginRight="@dimen/dp20"
                     android:textAlignment="center"
-                    android:text="Raju kumar"
                     android:layout_gravity="bottom"
                     android:textSize="@dimen/dp12"
                     />
             </LinearLayout>
             <TextView
-                android:id="@+id/Idate"
+                android:id="@+id/Udate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textColor="@color/medium_text"
                 android:textSize="@dimen/dp12"
-                android:text="12/06/97"
                 android:maxLines="1"/>
 
         </LinearLayout>
@@ -74,17 +73,50 @@
             android:layout_gravity="center"
             android:orientation="horizontal">
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/dp12"
+            android:layout_marginLeft="@dimen/dp12"
+            android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:id="@+id/Btitle"
+                    android:textColor="@color/col_15045"
+                    android:fontFamily="sans-serif-black"
+                    android:text=""
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/desc"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/sp14"
+                    android:textColor="@color/col_666666"
+                    android:maxLines="6"
+                    android:maxLength="210" />
+
             <TextView
-                android:id="@+id/calltype"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:id="@+id/decNotAvailable"
+                android:layout_width="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="14dp"
-                android:textColor="#000000"
-                android:maxLength="200"
-                android:text="Hay i got this error from line number 56 can you please help me out . I have tried lotts of my effort but i am not able to got the idea to resolved this... "    android:layout_marginRight="@dimen/dp12"
-                android:layout_marginLeft="@dimen/dp12"
-                />
+                android:gravity="center"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/dp30"
+                android:textSize="@dimen/sp14"
+                android:textColor="@color/col_666666"
+                android:text="@string/description_not_available"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
