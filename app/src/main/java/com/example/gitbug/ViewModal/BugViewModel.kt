@@ -13,8 +13,8 @@ class BugViewModel constructor(private val repository: BugRepository)  : ViewMod
     val bugList = MutableLiveData<List<BugResponse>>()
     val errorMessage = MutableLiveData<String>()
 
-    fun getAllMovies() {
-        val response = repository.getAllMovies()
+    fun getAllIssueList() {
+        val response = repository.getAllIssueList()
         response.enqueue(object : Callback<List<BugResponse>> {
             override fun onResponse(call: Call<List<BugResponse>>, response: Response<List<BugResponse>>) {
                 bugList.postValue(response.body())

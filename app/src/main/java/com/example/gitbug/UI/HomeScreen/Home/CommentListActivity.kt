@@ -21,7 +21,6 @@ class CommentListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_comment_list)
         init()
         setIssueDetailsUIData()
-        var getId : Int = intent.getIntExtra("CommentId",-1)
     }
 
     private fun init() {

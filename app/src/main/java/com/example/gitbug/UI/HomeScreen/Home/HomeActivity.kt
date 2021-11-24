@@ -47,7 +47,7 @@ class HomeActivity : AppCompatActivity(),BugListItemCallListner {
         viewModel.errorMessage.observe(this, Observer {
             Log.d(TAG, "Error -----------------------> ")
         })
-        viewModel.getAllMovies()
+        viewModel.getAllIssueList()
     }
 
     override fun onClick(id: Int, title: String, body: String, CommentNumber: Int) {

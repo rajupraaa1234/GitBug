@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/ItemLin"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/rectangle"
+        android:layout_marginLeft="@dimen/dp12"
+        android:layout_marginRight="@dimen/dp12"
+        android:layout_marginTop="@dimen/dp8"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp10"
+        android:paddingBottom="@dimen/dp10"
+        android:paddingLeft="@dimen/dp10"
+        android:paddingRight="@dimen/dp10"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp30">
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:gravity="center"
+                 android:text="Raju kumar commented 26 day ago"
+                 android:layout_height="wrap_content"/>
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/col_dbdfe"
+                android:layout_alignParentBottom="true"
+                android:layout_height="@dimen/dp1"/>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:text="sdjfhbhjbsfjsbjhsfcjhjvcjvc hjbjhsb"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</LinearLayout>
