@@ -39,7 +39,7 @@ class Sessionmanager private constructor(application: Application) {
         }
 
         fun get(): Sessionmanager? {
-            init(appController.getInstance())
+            appController.instance?.let { init(it) }
             return sinstance
         }
     }

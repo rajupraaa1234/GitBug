@@ -1,6 +1,6 @@
-package com.example.gitbug.CallBack;
+package com.example.gitbug.CallBack
 
-public interface CommonDialogListner {
-    void OnYesClickListner();
-    void OnNoClickListner();
+interface CommonDialogListner {
+    fun OnYesClickListner()
+    fun OnNoClickListner()
 }

@@ -1,18 +1,18 @@
-package com.example.gitbug.App;
+package com.example.gitbug.App
 
-import android.app.Application;
-import com.example.gitbug.NetworkHandler.Network;
+import android.app.Application
+import com.example.gitbug.App.appController
+import kotlin.jvm.Synchronized
 
-
-public class appController extends Application {
-    private static appController instance;
-    public static synchronized appController getInstance() {
-        return instance;
+class appController : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        instance = this
     }
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        instance = this;
+    companion object {
+        @get:Synchronized
+        var instance: appController? = null
+            private set
     }
 }
