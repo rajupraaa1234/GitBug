@@ -92,7 +92,7 @@ class HomeActivity : AppCompatActivity(),BugListItemCallListner, CommonDialogLis
     override fun OnYesClickListner() {
         if(Network.isNetworkConnected(this)){
             FetchDataFromServerInOtherWay()
-            customDialog.dialog.dismiss()
+            customDialog?.dialog?.dismiss()
         }else{
             customDialog.dialog
             progressBar.visibility = View.GONE
