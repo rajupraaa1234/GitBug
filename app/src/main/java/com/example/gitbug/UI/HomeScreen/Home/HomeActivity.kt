@@ -25,6 +25,7 @@ import com.example.gitbug.NetworkHandler.Network
 import com.example.gitbug.R
 import com.example.gitbug.Repository.BugRepository
 import com.example.gitbug.Response.BugResponse
+import com.example.gitbug.Utility.AppConstant
 import com.example.gitbug.Utility.Session.Sessionmanager
 import com.example.gitbug.ViewModal.BugViewModel
 import com.example.gitbug.ViewModal.BugViewModelFactory
@@ -43,9 +44,6 @@ class HomeActivity : AppCompatActivity(),BugListItemCallListner, CommonDialogLis
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        if(Sessionmanager.get().firstName!=null){
-            Log.d("Fname ------------------------------->"," " + Sessionmanager.get().firstName)
-        }
         init()
         if(Network.isNetworkConnected(this)){
             FetchDataFromServerInOtherWay()
@@ -96,10 +94,10 @@ class HomeActivity : AppCompatActivity(),BugListItemCallListner, CommonDialogLis
 
     override fun onClick(id: Int, title: String, body: String, CommentNumber: Int) {
         val intent = Intent(this, CommentListActivity::class.java)
-        intent.putExtra("CommentId",id)
-        intent.putExtra("title",title)
-        intent.putExtra("body",body)
-        intent.putExtra("CNum",CommentNumber)
+        intent.putExtra(AppConstant.CommentId,id)
+        intent.putExtra(AppConstant.title,title)
+        intent.putExtra(AppConstant.body,body)
+        intent.putExtra(AppConstant.CNum,CommentNumber)
         startActivity(intent)
     }
 

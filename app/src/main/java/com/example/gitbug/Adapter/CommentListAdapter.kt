@@ -36,8 +36,8 @@ class CommentListAdapter(var context: Context, var arr: List<CommentResponse>) :
             holder.body.text = user.body
         }
         var name : String = ""
-        if(user!=null && user.user.login!=null){
-            name = user.user.login;
+        if(user!=null && user?.user!!?.login!=null){
+            name = user?.user!!.login.toString()
         }
         if(user.created_at!=null){
             var date : String = extractDate(user.created_at.toString().trim())

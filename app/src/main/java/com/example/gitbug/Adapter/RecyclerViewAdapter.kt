@@ -28,8 +28,8 @@ class RecyclerViewAdapter(var context: Context, var arr: List<BugResponse>,var i
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val user = arr[position]
         if (user != null) {
-            holder.Username.text = user.user.login
-            holder.Upadate_date.text = util.extractDate(user.updated_at)
+            holder.Username.text = user.user?.login
+            holder.Upadate_date.text = user?.updated_at?.let { util.extractDate(it) }
             if (user.body != null) {
                 var desc : String = user.body.trim();
                 if(desc.length>=200){
@@ -41,7 +41,7 @@ class RecyclerViewAdapter(var context: Context, var arr: List<BugResponse>,var i
                 holder.textNotAvailable.visibility = View.VISIBLE
             }
             Glide.with(context)
-                .load(user.user.avatar_url)
+                .load(user.user?.avatar_url)
                 .into(holder.imageView)
             holder.Btitle.text = user.title
 

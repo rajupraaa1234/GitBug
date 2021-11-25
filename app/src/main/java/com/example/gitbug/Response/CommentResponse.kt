@@ -1,19 +1,7 @@
-package com.example.gitbug.Response;
+package com.example.gitbug.Response
 
-public class CommentResponse {
-    private String body;
-    private BugResponse.User user;
-    private String created_at;
-
-    public String getCreated_at() {
-        return created_at;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public BugResponse.User getUser() {
-        return user;
-    }
+class CommentResponse {
+    val body: String? = null
+    val user: BugResponse.User? = null
+    val created_at: String? = null
 }

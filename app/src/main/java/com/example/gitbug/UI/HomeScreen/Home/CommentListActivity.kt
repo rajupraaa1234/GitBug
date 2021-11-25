@@ -19,6 +19,7 @@ import com.example.gitbug.ViewModal.CommentViewModel.CommentViewModelFactory
 import androidx.lifecycle.Observer
 import com.example.gitbug.NetworkHandler.Network
 import com.example.gitbug.Response.CommentResponse
+import com.example.gitbug.Utility.AppConstant
 import com.example.gitbug.Utility.Session.Sessionmanager
 
 
@@ -55,10 +56,10 @@ class CommentListActivity : AppCompatActivity() {
     }
     private fun setIssueDetailsUIData(){
         if(intent.extras!=null) {
-            var getId: Int = intent.getIntExtra("CommentId", -1)
-            var IssueTitle: String? = intent.getStringExtra("title")
-            var IssueBody: String? = intent.getStringExtra("body")
-            var NumberOfComment: Int = intent.getIntExtra("CNum", 0)
+            var getId: Int = intent.getIntExtra(AppConstant.CommentId, -1)
+            var IssueTitle: String? = intent.getStringExtra(AppConstant.title)
+            var IssueBody: String? = intent.getStringExtra(AppConstant.body)
+            var NumberOfComment: Int = intent.getIntExtra(AppConstant.CNum, 0)
 
             title.text = IssueTitle
             IssueId.text = getId.toString()

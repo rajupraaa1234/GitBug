@@ -1,6 +1,6 @@
-package com.example.gitbug.Response;
+package com.example.gitbug.Response
 
-public class BugResponse {
+class BugResponse {
     /**
      * {
      * "url":"https://api.github.com/repos/square/okhttp/issues/6923",
@@ -56,57 +56,18 @@ public class BugResponse {
      * "type":"User",
      * "site_admin":false
      * }
-     * */
+     */
+    val url: String? = null
+    val comments_url: String? = null
+    val title: String? = null
+    val body: String? = null
+    val updated_at: String? = null
+    val user: User? = null
+    val number = 0
+    val comments = 0
 
-    private String url;
-    private String comments_url;
-    private String title;
-    private String body;
-    private String updated_at;
-    private User user;
-    private int number;
-    private int comments;
-
-    public int getComments() {
-        return comments;
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getComments_url() {
-        return comments_url;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public String getUpdated_at() {
-        return updated_at;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public class User{
-        private  String login;
-        private  String avatar_url;
-        public  String getLogin() {
-            return login;
-        }
-        public  String getAvatar_url() {
-            return avatar_url;
-        }
+    inner class User {
+        val login: String? = null
+        val avatar_url: String? = null
     }
 }
