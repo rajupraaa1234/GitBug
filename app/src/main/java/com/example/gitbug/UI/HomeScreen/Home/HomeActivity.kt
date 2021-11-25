@@ -1,5 +1,6 @@
 package com.example.gitbug.UI.HomeScreen.Home
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +24,8 @@ import com.example.gitbug.Dialog.CustomDialog
 import com.example.gitbug.NetworkHandler.Network
 import com.example.gitbug.R
 import com.example.gitbug.Repository.BugRepository
+import com.example.gitbug.Response.BugResponse
+import com.example.gitbug.Utility.Session.Sessionmanager
 import com.example.gitbug.ViewModal.BugViewModel
 import com.example.gitbug.ViewModal.BugViewModelFactory
 import kotlin.system.exitProcess
@@ -36,15 +39,23 @@ class HomeActivity : AppCompatActivity(),BugListItemCallListner, CommonDialogLis
     lateinit var customDialog : CustomDialog
     lateinit var noIssueFoundTxt : TextView
 
+    @SuppressLint("LongLogTag")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        if(Sessionmanager.get().firstName!=null){
+            Log.d("Fname ------------------------------->"," " + Sessionmanager.get().firstName)
+        }
         init()
         if(Network.isNetworkConnected(this)){
             FetchDataFromServerInOtherWay()
         }else{
-            customDialog.setDailog()
-            progressBar.visibility = View.GONE
+            if(Sessionmanager.get().issueList!=null){
+                addListIntoRecycler(Sessionmanager.get().issueList)
+            }else {
+                customDialog.setDailog()
+                progressBar.visibility = View.GONE
+            }
         }
     }
 
@@ -62,13 +73,12 @@ class HomeActivity : AppCompatActivity(),BugListItemCallListner, CommonDialogLis
     private fun FetchDataFromServerInOtherWay() {
         progressBar.visibility = View.VISIBLE
         viewModel.bugList.observe(this, Observer {
-            val recyclerViewAdapter = RecyclerViewAdapter(this, it, this)
             if(it==null || it.size==0){
                 progressBar.visibility = View.GONE
                 noIssueFoundTxt.visibility=View.VISIBLE
             }
-            recyclerView.layoutManager = LinearLayoutManager(this)
-            recyclerView.adapter = recyclerViewAdapter
+            Sessionmanager.get().issueList = it
+            addListIntoRecycler(it)
         })
 
         viewModel.errorMessage.observe(this, Observer {
@@ -76,6 +86,12 @@ class HomeActivity : AppCompatActivity(),BugListItemCallListner, CommonDialogLis
         })
         viewModel.getAllIssueList()
         progressBar.visibility = View.GONE
+    }
+
+    private fun addListIntoRecycler(list : List<BugResponse>){
+        val recyclerViewAdapter = RecyclerViewAdapter(this, list, this)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = recyclerViewAdapter
     }
 
     override fun onClick(id: Int, title: String, body: String, CommentNumber: Int) {
@@ -86,8 +102,6 @@ class HomeActivity : AppCompatActivity(),BugListItemCallListner, CommonDialogLis
         intent.putExtra("CNum",CommentNumber)
         startActivity(intent)
     }
-
-
 
     override fun OnYesClickListner() {
         if(Network.isNetworkConnected(this)){

@@ -17,6 +17,9 @@ import com.example.gitbug.Repository.CommentRepository
 import com.example.gitbug.ViewModal.CommentViewModel.CommentViewModel
 import com.example.gitbug.ViewModal.CommentViewModel.CommentViewModelFactory
 import androidx.lifecycle.Observer
+import com.example.gitbug.NetworkHandler.Network
+import com.example.gitbug.Response.CommentResponse
+import com.example.gitbug.Utility.Session.Sessionmanager
 
 
 class CommentListActivity : AppCompatActivity() {
@@ -69,7 +72,15 @@ class CommentListActivity : AppCompatActivity() {
             }
             if(NumberOfComment>0) {
                 progressBar.visibility = View.VISIBLE
-                fetchAllComment(getId)
+                if(Network.isNetworkConnected(this)){
+                    fetchAllComment(getId)
+                }else{
+                    if(Sessionmanager.get().getCommentList(getId)!=null){
+                        setCommentListIntoRecycler(Sessionmanager.get().getCommentList(getId))
+                    }else{
+                        progressBar.visibility = View.GONE
+                    }
+                }
             }
             body.text = IssueBody
         }
@@ -77,16 +88,21 @@ class CommentListActivity : AppCompatActivity() {
 
     private fun fetchAllComment(id:Int) {
         viewModel.commentList.observe(this, Observer {
-            val recyclerViewAdapter = CommentListAdapter(this, it)
-            recyclerView.layoutManager = LinearLayoutManager(this)
-            recyclerView.adapter = recyclerViewAdapter
+            setCommentListIntoRecycler(it)
+            Sessionmanager.get().setCommentList(it,id)
         })
 
         viewModel.errorMessage.observe(this, Observer {
             Log.d(TAG, "Error -----------------------> ")
         })
         viewModel.getAllCommentList(id)
-        progressBar.visibility = View.GONE
     }
+
+   private fun setCommentListIntoRecycler(list : List<CommentResponse>){
+       val recyclerViewAdapter = CommentListAdapter(this, list)
+       recyclerView.layoutManager = LinearLayoutManager(this)
+       recyclerView.adapter = recyclerViewAdapter
+       progressBar.visibility = View.GONE
+   }
 
 }
