@@ -1,12 +1,22 @@
 package com.example.gitbug.UI.HomeScreen.Home
 
+import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.gitbug.Adapter.CommentListAdapter
+import com.example.gitbug.ApiService.ApiServices
 import com.example.gitbug.R
+import com.example.gitbug.Repository.CommentRepository
+import com.example.gitbug.ViewModal.CommentViewModel.CommentViewModel
+import com.example.gitbug.ViewModal.CommentViewModel.CommentViewModelFactory
+import androidx.lifecycle.Observer
+
 
 class CommentListActivity : AppCompatActivity() {
     lateinit var title : TextView
@@ -15,6 +25,8 @@ class CommentListActivity : AppCompatActivity() {
     lateinit var CommentNumber : TextView
     lateinit var recyclerView: RecyclerView
     lateinit var noCommenttxt : TextView
+    lateinit var viewModel: CommentViewModel
+    private val retrofitService = ApiServices.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +42,10 @@ class CommentListActivity : AppCompatActivity() {
         CommentNumber = findViewById(R.id.numComment)
         recyclerView = findViewById(R.id.commentRec)
         noCommenttxt = findViewById(R.id.noCommenttxt)
+        viewModel =
+            ViewModelProvider(this, CommentViewModelFactory(CommentRepository(retrofitService))).get(
+                CommentViewModel::class.java
+            )
     }
     private fun setIssueDetailsUIData(){
         if(intent.extras!=null) {
@@ -37,17 +53,36 @@ class CommentListActivity : AppCompatActivity() {
             var IssueTitle: String? = intent.getStringExtra("title")
             var IssueBody: String? = intent.getStringExtra("body")
             var NumberOfComment: Int = intent.getIntExtra("CNum", 0)
-            if(IssueBody.isNullOrEmpty()){
-                IssueBody = "Description Not Available..."
-            }
+
             title.text = IssueTitle
-            body.text = IssueBody
             IssueId.text = getId.toString()
             CommentNumber.text = NumberOfComment.toString() + " Comments"
             if(NumberOfComment==0){
                 noCommenttxt.visibility = View.VISIBLE
                 recyclerView.visibility = View.GONE
             }
+            if(IssueBody.isNullOrEmpty()){
+                IssueBody = getString(R.string.description_not_available)
+            }
+            if(NumberOfComment>0) {
+                fetchAllComment(getId)
+            }
+
+            body.text = IssueBody
         }
     }
+
+    private fun fetchAllComment(id:Int) {
+        viewModel.commentList.observe(this, Observer {
+            val recyclerViewAdapter = CommentListAdapter(this, it)
+            recyclerView.layoutManager = LinearLayoutManager(this)
+            recyclerView.adapter = recyclerViewAdapter
+        })
+
+        viewModel.errorMessage.observe(this, Observer {
+            Log.d(TAG, "Error -----------------------> ")
+        })
+        viewModel.getAllCommentList(id)
+    }
+
 }

@@ -89,15 +89,16 @@
                 android:layout_marginTop="@dimen/dp10"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/commentRec"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent" />
                 <TextView
                     android:id="@+id/noCommenttxt"
                     android:layout_width="wrap_content"
                     android:visibility="gone"
-                    android:text="No Comments..."
+                    android:text="No Comments"
                     android:layout_centerInParent="true"
                     android:layout_height="wrap_content"/>
             </RelativeLayout>
