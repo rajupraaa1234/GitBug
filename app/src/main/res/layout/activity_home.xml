@@ -11,4 +11,21 @@
         android:id="@+id/bugListRecycler"
         android:layout_height="match_parent"/>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/noIssuetxt"
+        android:layout_width="wrap_content"
+        android:text="No Issues available"
+        android:textColor="@color/black"
+        android:layout_centerInParent="true"
+        android:textSize="16sp"
+        android:visibility="gone"
+        android:layout_height="wrap_content"/>
+
 </RelativeLayout>

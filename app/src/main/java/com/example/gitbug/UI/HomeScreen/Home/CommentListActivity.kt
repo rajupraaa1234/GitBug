@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,6 +27,7 @@ class CommentListActivity : AppCompatActivity() {
     lateinit var recyclerView: RecyclerView
     lateinit var noCommenttxt : TextView
     lateinit var viewModel: CommentViewModel
+    lateinit var progressBar: ProgressBar
     private val retrofitService = ApiServices.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +44,7 @@ class CommentListActivity : AppCompatActivity() {
         CommentNumber = findViewById(R.id.numComment)
         recyclerView = findViewById(R.id.commentRec)
         noCommenttxt = findViewById(R.id.noCommenttxt)
+        progressBar = findViewById(R.id.cprogressBar)
         viewModel =
             ViewModelProvider(this, CommentViewModelFactory(CommentRepository(retrofitService))).get(
                 CommentViewModel::class.java
@@ -65,9 +68,9 @@ class CommentListActivity : AppCompatActivity() {
                 IssueBody = getString(R.string.description_not_available)
             }
             if(NumberOfComment>0) {
+                progressBar.visibility = View.VISIBLE
                 fetchAllComment(getId)
             }
-
             body.text = IssueBody
         }
     }
@@ -83,6 +86,7 @@ class CommentListActivity : AppCompatActivity() {
             Log.d(TAG, "Error -----------------------> ")
         })
         viewModel.getAllCommentList(id)
+        progressBar.visibility = View.GONE
     }
 
 }
