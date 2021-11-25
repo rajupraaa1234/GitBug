@@ -2,4 +2,5 @@
     <string name="app_name">GitBug</string>
     <string name="gitbug">GitBug</string>
     <string name="description_not_available">Description not available</string>
+    <string name="internet_not_connected">Internet Not Connected</string>
 </resources>

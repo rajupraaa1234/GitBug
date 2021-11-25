@@ -9,6 +9,7 @@
     <color name="transparent">#00ffffff</color>
     <color name="medium_text">#7e7e7e</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="col_eeeeee">#eeeeee</color>
     <color name="col_666666">#666666</color>
     <color name="col_15045">#15045c</color>
     <color name="col_dbdfe">#dbdfe1</color>
