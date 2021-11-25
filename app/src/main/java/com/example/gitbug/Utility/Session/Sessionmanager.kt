@@ -1,67 +1,50 @@
-package com.example.gitbug.Utility.Session;
-
-import android.app.Application;
-import android.content.SharedPreferences;
-
-import com.example.gitbug.App.appController;
-import com.example.gitbug.Response.BugResponse;
-import com.example.gitbug.Response.CommentResponse;
-import com.example.gitbug.Utility.AppConstant;
-import com.google.gson.Gson;
-
-import java.util.List;
+package com.example.gitbug.Utility.Session
 
 
-public class Sessionmanager {
+import com.example.gitbug.Utility.AppConstant.SaveIssueList
 
-   // private SharedPreferences sharedPreferences;
-    private static Sessionmanager sinstance;
+import android.app.Application
+import com.example.gitbug.Response.BugResponse
+import com.example.gitbug.Response.CommentResponse
+import com.example.gitbug.App.appController
 
-    private PreferenceUtil sharedPreferences;
+class Sessionmanager private constructor(application: Application) {
+    private val sharedPreferences: PreferenceUtil
 
-    private String session;
+    fun setIssueList(list: List<BugResponse?>?){
+        sharedPreferences.saveIssueList(SaveIssueList, list)
+    }
+    fun getIssueList() : List<BugResponse>? {
+        return sharedPreferences.getIssueList(SaveIssueList)
+    }
+    fun setCommentList(list: List<CommentResponse?>?, id: Int) {
+        sharedPreferences.saveCommentList(id.toString(), list)
+    }
 
-    private static void init(Application application){
-        if(sinstance==null){
-            sinstance=  new Sessionmanager(application);
+    fun getCommentList(id: Int): List<CommentResponse>? {
+        return sharedPreferences.getCommentList(id.toString())
+    }
+
+    fun clear() {
+        sharedPreferences.clear()
+    }
+
+    companion object {
+        // private SharedPreferences sharedPreferences;
+        private var sinstance: Sessionmanager? = null
+        private fun init(application: Application) {
+            if (sinstance == null) {
+                sinstance = Sessionmanager(application)
+            }
+        }
+
+        fun get(): Sessionmanager? {
+            init(appController.getInstance())
+            return sinstance
         }
     }
 
-    public static Sessionmanager get(){
-        init(appController.getInstance());
-        return sinstance;
-    }
-
-
-    private Sessionmanager(Application application) {
-        sharedPreferences = new PreferenceUtil(application);
-    }
-
-
-    public void setFirstName(String fname){
-        sharedPreferences.setStringData("Fname",fname);
-    }
-
-    public String getFirstName(){
-        return sharedPreferences.getStringData("Fname");
-    }
-    public void setIssueList(List<BugResponse> list){
-        sharedPreferences.saveIssueList(AppConstant.INSTANCE.getSaveIssueList(), list);
-    }
-
-    public List<BugResponse> getIssueList(){
-        return sharedPreferences.getIssueList(AppConstant.INSTANCE.getSaveIssueList());
-    }
-
-    public void setCommentList(List<CommentResponse> list,int id){
-        sharedPreferences.saveCommentList(String.valueOf(id), list);
-    }
-
-    public List<CommentResponse> getCommentList(int id){
-        return sharedPreferences.getCommentList(String.valueOf(id));
-    }
-
-    public void clear() {
-        sharedPreferences.clear();
+    init {
+        sharedPreferences = PreferenceUtil(application)
     }
 }

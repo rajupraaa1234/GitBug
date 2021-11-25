@@ -48,8 +48,8 @@ class HomeActivity : AppCompatActivity(),BugListItemCallListner, CommonDialogLis
         if(Network.isNetworkConnected(this)){
             FetchDataFromServerInOtherWay()
         }else{
-            if(Sessionmanager.get().issueList!=null){
-                addListIntoRecycler(Sessionmanager.get().issueList)
+            if(Sessionmanager.get()?.getIssueList() !=null){
+                addListIntoRecycler(Sessionmanager.get()?.getIssueList() as List<BugResponse>)
             }else {
                 customDialog.setDailog()
                 progressBar.visibility = View.GONE
@@ -75,7 +75,7 @@ class HomeActivity : AppCompatActivity(),BugListItemCallListner, CommonDialogLis
                 progressBar.visibility = View.GONE
                 noIssueFoundTxt.visibility=View.VISIBLE
             }
-            Sessionmanager.get().issueList = it
+            Sessionmanager.get()?.setIssueList(it)
             addListIntoRecycler(it)
         })
 

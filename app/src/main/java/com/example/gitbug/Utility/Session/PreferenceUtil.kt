@@ -1,75 +1,69 @@
-package com.example.gitbug.Utility.Session;
+package com.example.gitbug.Utility.Session
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.util.Log;
+import android.content.Context
+import com.example.gitbug.Utility.AppConstant.App_NAME
+import android.content.SharedPreferences
+import com.example.gitbug.Utility.Session.PreferenceUtil
+import com.example.gitbug.Response.BugResponse
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.example.gitbug.Response.CommentResponse
+import com.example.gitbug.Utility.AppConstant
 
-import com.example.gitbug.Response.BugResponse;
-import com.example.gitbug.Response.CommentResponse;
-import com.example.gitbug.Utility.AppConstant;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.List;
-
-
-public class PreferenceUtil {
-
-    public static final String SHARED_PREF_NAME = AppConstant.INSTANCE.getApp_NAME();
-    private final SharedPreferences mSpref;
-    private final Context context;
-    private String TAG = PreferenceUtil.class.getSimpleName();
-
-    public PreferenceUtil(Context context) {
-        this.context = context;
-        mSpref = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+class PreferenceUtil(private val context: Context) {
+    private val mSpref: SharedPreferences
+    private val TAG = PreferenceUtil::class.java.simpleName
+    fun setStringData(key: String?, value: String?) {
+        val appInstallInfoEditor = mSpref.edit()
+        appInstallInfoEditor.putString(key, value)
+        appInstallInfoEditor.apply()
     }
 
-    public void setStringData(String key, String value) {
-        SharedPreferences.Editor appInstallInfoEditor = mSpref.edit();
-        appInstallInfoEditor.putString(key, value);
-        appInstallInfoEditor.apply();
+    fun getStringData(key: String?): String? {
+        return mSpref.getString(key, "")
     }
 
-    public String getStringData(String key) {
-        return mSpref.getString(key, "");
+    fun saveIssueList(key: String?, list: List<BugResponse?>?) {
+        val editor = mSpref.edit()
+        val gson = Gson()
+        val json = gson.toJson(list)
+        editor.putString(key, json)
+        editor.apply()
     }
 
-    public void saveIssueList(String key, List<BugResponse> list) {
-        SharedPreferences.Editor editor = mSpref.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(list);
-        editor.putString(key, json);
-        editor.apply();
+    fun getIssueList(key: String?): List<BugResponse>? {
+        val gson = Gson()
+        val json = mSpref.getString(key, null)
+        val type = object : TypeToken<List<BugResponse?>?>() {}.type
+        if(json==null) return null
+        return gson.fromJson(json, type)
     }
 
-    public List<BugResponse> getIssueList(String key) {
-        Gson gson = new Gson();
-        String json = mSpref.getString(key, null);
-        Type type = new TypeToken<List<BugResponse>>() {
-        }.getType();
-        return gson.fromJson(json, type);
+    fun saveCommentList(key: String?, list: List<CommentResponse?>?) {
+        val editor = mSpref.edit()
+        val gson = Gson()
+        val json = gson.toJson(list)
+        editor.putString(key, json)
+        editor.apply()
     }
 
-    public void saveCommentList(String key, List<CommentResponse> list) {
-        SharedPreferences.Editor editor = mSpref.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(list);
-        editor.putString(key, json);
-        editor.apply();
+    fun getCommentList(key: String?): List<CommentResponse> ?{
+        val gson = Gson()
+        val json = mSpref.getString(key, null)
+        val type = object : TypeToken<List<CommentResponse?>?>() {}.type
+        if(json==null) return null
+        return gson.fromJson(json, type)
     }
 
-    public List<CommentResponse> getCommentList(String key) {
-        Gson gson = new Gson();
-        String json = mSpref.getString(key, null);
-        Type type = new TypeToken<List<CommentResponse>>() {
-        }.getType();
-        return gson.fromJson(json, type);
+    fun clear() {
+        mSpref.edit().clear().apply()
     }
 
-    public void clear() {
-        mSpref.edit().clear().apply();
+    companion object {
+        val SHARED_PREF_NAME = App_NAME
     }
 
+    init {
+        mSpref = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+    }
 }

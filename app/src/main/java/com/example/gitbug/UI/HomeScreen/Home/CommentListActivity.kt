@@ -76,8 +76,12 @@ class CommentListActivity : AppCompatActivity() {
                 if(Network.isNetworkConnected(this)){
                     fetchAllComment(getId)
                 }else{
-                    if(Sessionmanager.get().getCommentList(getId)!=null){
-                        setCommentListIntoRecycler(Sessionmanager.get().getCommentList(getId))
+                    if(Sessionmanager.get()?.getCommentList(getId)!= null){
+                        Sessionmanager.get()?.let { it.getCommentList(getId)?.let { it1 ->
+                            setCommentListIntoRecycler(
+                                it1
+                            )
+                        } }
                     }else{
                         progressBar.visibility = View.GONE
                     }
@@ -90,7 +94,7 @@ class CommentListActivity : AppCompatActivity() {
     private fun fetchAllComment(id:Int) {
         viewModel.commentList.observe(this, Observer {
             setCommentListIntoRecycler(it)
-            Sessionmanager.get().setCommentList(it,id)
+            Sessionmanager.get()?.setCommentList(it,id)
         })
 
         viewModel.errorMessage.observe(this, Observer {
